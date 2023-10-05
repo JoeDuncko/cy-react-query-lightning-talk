@@ -1,26 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-
-export type Card = {
-  name: string;
-  type: string;
-  color: string;
-  stage: string;
-  digi_type: string;
-  attribute: string;
-  level: number;
-  play_cost: number;
-  evolution_cost: number;
-  cardrarity: string;
-  artist: null | string;
-  dp: number;
-  cardnumber: string;
-  maineffect: null;
-  soureeffect: null | string;
-  set_name: string;
-  card_sets: string[];
-  image_url: string;
-};
+import { Card } from "./types";
 
 function App() {
   const [cards, setCards] = useState<Card[]>([]);
@@ -56,7 +35,7 @@ function App() {
   }
 
   return (
-    <>
+    <div>
       {cards.map((card) => (
         <div key={card.cardnumber}>
           <img src={card.image_url} alt={card.name} />
@@ -64,7 +43,7 @@ function App() {
           <h2>{card.cardnumber}</h2>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
