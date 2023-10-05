@@ -2,19 +2,7 @@ import { useAsync } from "@react-hookz/web/esm/useAsync";
 import { useEffect } from "react";
 import { Card } from "./types";
 
-const getCards = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
-  const response = await fetch(
-    "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
-  );
-
-  const data: Card[] = await response.json();
-
-  return data;
-};
-
-function App() {
+export function CardList() {
   const [{ status, result: cards }, { execute }] = useAsync(getCards);
 
   useEffect(() => {
@@ -42,4 +30,14 @@ function App() {
   );
 }
 
-export default App;
+const getCards = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  const response = await fetch(
+    "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
+  );
+
+  const data: Card[] = await response.json();
+
+  return data;
+};

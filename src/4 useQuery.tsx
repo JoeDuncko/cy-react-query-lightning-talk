@@ -1,18 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "./types";
 
-const getCards = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
-  const response = await fetch(
-    "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
-  );
-
-  const data: Card[] = await response.json();
-
-  return data;
-};
-
 export function CardList() {
   const {
     data: cards,
@@ -43,3 +31,15 @@ export function CardList() {
     </div>
   );
 }
+
+const getCards = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  const response = await fetch(
+    "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
+  );
+
+  const data: Card[] = await response.json();
+
+  return data;
+};

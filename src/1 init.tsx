@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "./types";
 
-function App() {
+export function CardList() {
   const [cards, setCards] = useState<Card[]>([]);
 
   useEffect(() => {
@@ -36,5 +36,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
