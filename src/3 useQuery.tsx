@@ -8,7 +8,17 @@ export function CardList() {
     isError: cardsIsError,
   } = useQuery({
     queryKey: ["cards"],
-    queryFn: getCards,
+    queryFn: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      const response = await fetch(
+        "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
+      );
+
+      const data: Card[] = await response.json();
+
+      return data;
+    },
   });
 
   if (cardsIsLoading) {
@@ -31,15 +41,3 @@ export function CardList() {
     </div>
   );
 }
-
-const getCards = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
-  const response = await fetch(
-    "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
-  );
-
-  const data: Card[] = await response.json();
-
-  return data;
-};

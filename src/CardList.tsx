@@ -1,7 +1,28 @@
+import { useEffect, useState } from "react";
 import { Card } from "./types";
 
 export function CardList() {
-  const cards: Card[] = [];
+  const [cards, setCards] = useState<Card[]>([]);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      const response = await fetch(
+        "https://digimoncard.io/api-public/search.php?n=Agumon&series=Digimon Card Game"
+      );
+
+      const data: Card[] = await response.json();
+
+      setCards(data);
+    };
+
+    fetchCards();
+  }, []);
+
+  if (!cards.length) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div>
