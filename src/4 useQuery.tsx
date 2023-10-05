@@ -7,7 +7,7 @@ export function CardList() {
     isLoading: cardsIsLoading,
     isError: cardsIsError,
   } = useQuery({
-    queryKey: ["cards", "Agumon"],
+    queryKey: ["cards"],
     queryFn: getCards,
   });
 
