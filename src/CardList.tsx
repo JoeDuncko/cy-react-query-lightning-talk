@@ -1,7 +1,9 @@
-export function CardList() {
-  return (
-    // Work happens here
+import { Card } from "./types";
 
+export function CardList() {
+  const cards: Card[] = [];
+
+  return (
     <div>
       {cards.map((card) => (
         <div key={card.cardnumber}>
